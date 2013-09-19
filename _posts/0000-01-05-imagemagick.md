@@ -1,6 +1,7 @@
 ---
 layout: default
 title:  "ImageMagick"
+tag: main
 ---
 
 # ImageMagick

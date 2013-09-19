@@ -205,3 +205,10 @@ footer {
     color:#444;
   }
 }
+
+/* Custom added by ME... */
+.sub-heading {
+  font-weight: normal;
+  margin: 0 0 3px;
+  color: #777;
+}

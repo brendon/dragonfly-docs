@@ -1,6 +1,7 @@
 ---
 layout: default
 title:  "Changelog"
+tag: changelog
 ---
 
 # Changelog

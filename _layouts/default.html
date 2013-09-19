@@ -19,11 +19,24 @@
           <header>
             <h1 class="title"><a href="{{ site.baseurl }}/">{{ site.name }}</a></h1>
             <p>Image/asset management for winners</p>
+
             <ul>
               {% for post in site.posts reversed %}
+              {% if post.tags contains 'main' %}
               <li><a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a></li>
+              {% endif %}
               {% endfor %}
             </ul>
+
+            <h3 class="sub-heading">Customization</h3>
+            <ul>
+              {% for post in site.posts reversed %}
+              {% if post.tags contains 'customization' %}
+              <li><a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a></li>
+              {% endif %}
+              {% endfor %}
+            </ul>
+
           </header>
           <section>
             {{ content }}
@@ -40,6 +53,11 @@
                 <a href="http://rubydoc.info/github/markevans/dragonfly/frames">RubyDoc</a> <br />
                 <a href="http://github.com/markevans/dragonfly/issues">Issues</a> <br />
                 <a href="http://groups.google.com/group/dragonfly-users">Suggestions/Questions</a> <br />
+                {% for post in site.posts %}
+                {% if post.tags contains 'changelog' %}
+                <a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a> <br />
+                {% endif %}
+                {% endfor %}
               </p>
             </div>
           </footer>

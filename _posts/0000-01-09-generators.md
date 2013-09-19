@@ -1,6 +1,7 @@
 ---
 layout: default
 title:  "Generators"
+tag: customization
 ---
 
 # Generators

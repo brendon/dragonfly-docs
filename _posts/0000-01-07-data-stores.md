@@ -1,6 +1,7 @@
 ---
 layout: default
 title:  "Data stores"
+tag: customization
 ---
 
 # Data stores

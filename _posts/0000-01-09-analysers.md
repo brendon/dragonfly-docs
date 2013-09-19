@@ -1,6 +1,7 @@
 ---
 layout: default
 title:  "Analysers"
+tag: customization
 ---
 
 # Analysers
