@@ -4,24 +4,79 @@ title:  "Configuration"
 tag: customization
 ---
 
-# How does it work?
-## Some Page (H2)
-### Some Page (H3)
-### Some Page (H4)
-
-Some text in backticks is `_posts` and some text in italics is _hello_
-
-- some
-- list
-
+# Configuration
+## Dragonfly apps
+Dragonfly has a default app
 {% highlight ruby %}
-# Some ruby
-def some_ruby(name)
-  puts "Hi, #{name}"
+app = Dragonfly.app
+{% endhighlight %}
+
+which is configured using
+{% highlight ruby %}
+app.configure do
+  # configuration goes here
 end
 {% endhighlight %}
 
-Here's an [example link][link].
+You can have multiple apps, each with its own configuration, by giving each a name, e.g.
+{% highlight ruby %}
+app1 = Dragonfly.app(:audio)
+app2 = Dragonfly.app(:images)
+{% endhighlight %}
 
-[link]:    http://example.com
+## Configuration options
+Defaults should be fairly sensible, but there are a number of things you can adjust to suit your needs. Below is an example with all configuration options used.
 
+{% highlight ruby %}
+Dragonfly.app.configure do
+
+  url_format '/images/:job.:ext'                   # defaults to '/:job/:name'
+  url_host 'http://some.domain.com:4000'           # defaults to nil
+  url_path_prefix '/assets'                        # defaults to nil, might be needed if app is mounted under a subdir
+
+  protect_from_dos_attacks true          # defaults to false - adds a SHA parameter on the end of urls
+  secret 'This is my secret yeh!!'       # used to generate the protective SHA
+
+  response_header 'Cache-Control', 'private'                    # You can set custom response headers
+  response_header 'Cache-Control' do |job, request, headers|    # either directly or with a block
+    job.image? ? "public, max-age=10000000" : "private"         # setting to nil removes the header
+  end
+
+  datastore :memory                   # defaults to :file - see Data stores doc for more details
+
+  processor MyProcessor               # See Processors doc for more details
+  generator MyGenerator               # See Generators doc for more details
+  analyser MyAnalyser                 # See Analysers doc for more details
+
+  plugin :imagemagick                 # See Plugins doc for more details
+
+  mime_type 'egg', 'fried/egg'        # content with ext ".egg" will be given mime type "fried/egg"
+
+  define_url do |app, job, opts|            # allows overriding urls - defaults to
+    if job.step_types == [:fetch]           # app.server.url_for(job, opts)
+      app.datastore.url_for(job.uid)
+    else
+      app.server.url_for(job, opts)
+    end
+  end
+
+  before_serve do |job, env|          # allows you to do something before content is served
+    # do something                    # to override the response, throw :halt with a rack response, e.g.
+  end                                 #     throw :halt, [200, {'Content-Type' => 'text/plain'}, ["STUFF"]]
+
+  allow_legacy_urls true              # default to false - allow urls from pre-v0.9.12
+
+  fetch_file_whitelist [              # List of allowed file paths when using fetch_file (strings or regexps)
+    "/home/images",
+    /public/
+  ]
+
+  fetch_url_whitelist      [          # List of allowed urls when using fetch_url (strings or regexps)
+    "http://localhost:5000/image.png",
+    /some\.domain/
+  ]
+
+  dragonfly_url "/here"               # defaults to /dragonfly - set to nil to turn off
+
+end
+{% endhighlight %}
