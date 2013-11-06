@@ -53,6 +53,27 @@ uid = job.store(:path => 'my/custom/path')
 To see how to do this with models, see [Models - Storage Options]({% post_url 0000-01-04-models %}#storage-options)
 
 ## Memory data store
+The Memory data store keeps everything in memory and is useful for things like tests.
+
+To use:
+{% highlight ruby %}
+Dragonfly.app.configure do
+  datastore :memory
+  # ...
+end
+{% endhighlight %}
+
+You can also specify the uid on store
+{% highlight ruby %}
+uid = job.store(:uid => "179")
+{% endhighlight %}
+
 ## Other data stores
+The following datastores previously in Dragonfly core are now in separate gems:
+
+  - [S3](https://github.com/markevans/dragonfly-s3_data_store)
+  - [Couch](https://github.com/markevans/dragonfly-couch_data_store)
+  - [Mongo](https://github.com/markevans/dragonfly-mongo_data_store)
+
 ## Building a custom data store
 
