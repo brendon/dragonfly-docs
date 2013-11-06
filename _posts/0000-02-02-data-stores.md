@@ -125,3 +125,31 @@ The above should be fairly self-explanatory, but to be a bit more specific:
 
   - takes a String uid
   - destroys the content
+
+You can also optionally serve data directly from the datastore using
+
+{% highlight ruby %}
+Dragonfly.app.remote_url_for(uid)
+{% endhighlight %}
+
+or
+
+{% highlight ruby %}
+my_model.attachment.remote_url
+{% endhighlight %}
+
+provided the data store implements url_for
+
+{% highlight ruby %}
+class MyDataStore
+
+  # ...
+
+  def url_for(uid, opts={})
+    "http://some.domain/#{uid}"
+  end
+
+end
+{% endhighlight %}
+
+Both `remote_url_for` and `remote_url` also take an options hash which will be passed through to the data store's `url_for` method.
