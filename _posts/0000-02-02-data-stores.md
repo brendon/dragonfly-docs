@@ -71,9 +71,57 @@ uid = job.store(:uid => "179")
 ## Other data stores
 The following datastores previously in Dragonfly core are now in separate gems:
 
-  - [S3](https://github.com/markevans/dragonfly-s3_data_store)
+  - [Amazon S3](https://github.com/markevans/dragonfly-s3_data_store)
   - [Couch](https://github.com/markevans/dragonfly-couch_data_store)
   - [Mongo](https://github.com/markevans/dragonfly-mongo_data_store)
 
 ## Building a custom data store
+Data stores need to implement three methods: `write`, `read` and `destroy`.
+{% highlight ruby %}
+class MyDataStore
 
+  # Store the data AND meta, and return a unique string uid
+  def write(content, opts={})
+    some_unique_uid = SomeLibrary.store(content.data, meta: content.meta)
+    some_unique_uid
+  end
+
+  # Retrieve the data and meta as a 2-item array
+  def read(uid)
+    data = SomeLibrary.get(uid)
+    meta = SomeLibrary.get_meta(uid)
+    if content
+      [
+        data,     # can be a String, File, Pathname, Tempfile
+        meta      # the same meta Hash that was stored with write
+      ]
+    else
+      nil         # return nil if not found
+    end
+  end
+
+  def destroy(uid)
+    SomeLibrary.delete(uid)
+  end
+
+end
+{% endhighlight %}
+
+The above should be fairly self-explanatory, but to be a bit more specific:
+
+`write`
+
+  - takes a content object (see <a href="http://rdoc.info/github/markevans/dragonfly/Dragonfly/Content" target="_blank">Dragonfly::Content</a> for more details) and uses a method like `data` (String), `file`, `path` to get its data and `meta` to get its meta
+  - also takes an options hash, passing through any options passed to `store`
+  - returns a unique String uid
+
+`read`
+
+  - takes a String uid
+  - returns a 2-item array; the data in the form of a String, Pathname, File or Tempfile and the meta hash
+  - returns nil instead if not found
+
+`destroy`
+
+  - takes a String uid
+  - destroys the content
