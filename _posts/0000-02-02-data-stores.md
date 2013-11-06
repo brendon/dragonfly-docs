@@ -153,3 +153,27 @@ end
 {% endhighlight %}
 
 Both `remote_url_for` and `remote_url` also take an options hash which will be passed through to the data store's `url_for` method.
+
+### Using your custom data store
+Your custom data store can be used by a Dragonfly app with
+{% highlight ruby %}
+Dragonfly.app.configure do
+  datastore MyDataStore.new(:some => 'args')
+  # ...
+end
+{% endhighlight %}
+
+or you can register a symbol
+{% highlight ruby %}
+Dragonfly::App.register_datastore(:my_data_store){ MyDataStore }
+{% endhighlight %}
+
+so you configure using just the symbol
+{% highlight ruby %}
+Dragonfly.app.configure do
+  datastore :my_data_store, :some => 'args'
+  # ...
+end
+{% endhighlight %}
+
+Any other args are passed straight to the data store's `initialize` method.
