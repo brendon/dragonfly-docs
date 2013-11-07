@@ -10,7 +10,7 @@ A Processor modifies content, e.g. resizing an image, converting audio to mp3 fo
 They can be added using a block
 {% highlight ruby %}
 Dragonfly.app.configure do
-  processor :shrink do |content|
+  processor :shrink do |content, *args|
     # ...
   end
   # ...
@@ -43,6 +43,16 @@ smaller_image = image.shrink
 Furthermore, a bang! method is provided, which operates on `self`
 {% highlight ruby %}
 image.shrink!
+{% endhighlight %}
+
+You can pass arguments, which will be passed on to the processor block
+{% highlight ruby %}
+processor :shrink do |content, amount, quality|
+  # ...
+end
+{% endhighlight %}
+{% highlight ruby %}
+image.shrink(4, 30)
 {% endhighlight %}
 
 ## Implementing the processor
