@@ -163,7 +163,7 @@ Dragonfly.app.configure do
 end
 {% endhighlight %}
 
-or you can register a symbol
+or you can register a symbol (which you may want to do if creating a gem)
 {% highlight ruby %}
 Dragonfly::App.register_datastore(:my_data_store){ MyDataStore }
 {% endhighlight %}
