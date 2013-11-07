@@ -46,7 +46,7 @@ image.shrink!
 {% endhighlight %}
 
 ## Implementing the processor
-The `content` object yielded to the block/`call` method is a <a href="http://rdoc.info/github/markevans/dragonfly/Dragonfly/Content" target="_blank">Dragonfly::Content</a> object.
+The `content` object yielded to the block/`call` method is a <a href="http://rdoc.info/github/markevans/dragonfly/Dragonfly/Content" target="_blank">Dragonfly::Content - see the doc</a> for methods it provides.
 
 The processor's job is to use methods on `content` to modify it - the return value of the processor block is not important.
 
