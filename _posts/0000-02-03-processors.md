@@ -50,7 +50,7 @@ The `content` object yielded to the block/`call` method is a <a href="http://rdo
 
 The processor's job is to use methods on `content` to modify it - the return value of the processor block is not important.
 
-### Updating content
+### Updating content and metadata
 The primary method to use to update content is `Content#update`. It can take a String, Pathname, File or Tempfile, and optionally metadata to add.
 
 {% highlight ruby %}
@@ -59,6 +59,13 @@ processor :shrink do |content|
   content.update(some_file, 'some' => 'meta')
 end
 {% endhighlight %}
+
+Another way of updating metadata is with `add_meta`
+{% highlight ruby %}
+content.add_meta('some' => 'meta')
+{% endhighlight %}
+
+**NOTE** meta data should be serializable to and from JSON.
 
 ### Using shell commands
 To update using the shell, you can use `Content#shell_update`
