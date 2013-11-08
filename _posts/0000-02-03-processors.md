@@ -122,8 +122,9 @@ Here, `basename`, `style` and `ext` have not been set on the job's `url_attribut
 
 Setting the name will set `basename` and `ext`.
 {% highlight ruby %}
+job.url  # ===> "?job=W1siZiIsInNvbWVfdWlkIl1d"
 job.url_attributes.name = 'hello.txt'
-job.url # ===> "/hello.txt?job=W1siZiIsInNvbWVfdWlkIl1d"
+job.url  # ===> "/hello.txt?job=W1siZiIsInNvbWVfdWlkIl1d"
 {% endhighlight %}
 
 Note that this happens automatically for models when a `xxx_name` accessor is provided.
