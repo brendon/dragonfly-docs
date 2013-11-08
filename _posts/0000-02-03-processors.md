@@ -16,6 +16,7 @@ Dragonfly.app.configure do
   # ...
 end
 {% endhighlight %}
+<!-- *** silly asterisk highlighting -->
 
 or providing an object that responds to `call` (`MyProcessor` in this case)
 {% highlight ruby %}
@@ -98,6 +99,63 @@ processor :greyscale do |content|
   content.process! :convert, "-type Grayscale"
 end
 {% endhighlight %}
+
+### Updating the url
+It is also possible for a processor to (optionally) update the url for a given job.
+For example, suppose we have a configured url format
+
+{% highlight ruby %}
+url_format '/:basename-:style.:ext'
+{% endhighlight %}
+
+A job
+{% highlight ruby %}
+job = Dragonfly.app.fetch('some_uid')
+{% endhighlight %}
+
+will have a url
+{% highlight ruby %}
+job.url # ===> "?job=W1siZiIsInNvbWVfdWlkIl1d"
+{% endhighlight %}
+
+Here, `basename`, `style` and `ext` have not been set on the job's `url_attributes`, so they don't appear in the url.
+
+Setting the name will set `basename` and `ext`.
+{% highlight ruby %}
+job.url_attributes.name = 'hello.txt'
+job.url # ===> "/hello.txt?job=W1siZiIsInNvbWVfdWlkIl1d"
+{% endhighlight %}
+
+Note that this happens automatically for models when a `xxx_name` accessor is provided.
+
+We can tell our processor to add the `style` part of the url by implementing the method `update_url`
+(note that we cannot register the processor as a block in this case)
+
+{% highlight ruby %}
+class ShrinkProcessor
+  def call(content, *args)
+    # ...
+  end
+
+  def update_url(attrs, *args) # attrs is Job#url_attributes, which is an OpenStruct-like object
+    attrs.style = 'shrunk'
+  end
+end
+
+Dragonfly.app.configure do
+  processor :shrink, ShrinkProcessor.new
+  # ...
+end
+{% endhighlight %}
+
+Now the processor adds the 'style' part to the url
+
+{% highlight ruby %}
+job.url        # ===> "/hello.txt?job=W1siZiIsInNvbWVfdWlkIl1d"
+job.shrink.url # ===> "/hello-shrunk.txt?job=W1siZiIsInNvbWVfdWlkIl1d"
+{% endhighlight %}
+
+If the processor accepts extra arguments then these are also passed to `update_url`.
 
 ## ImageMagick
 The ImageMagick plugin adds a few processors - see [the doc]({% post_url 0000-01-05-imagemagick %}) for more details.
