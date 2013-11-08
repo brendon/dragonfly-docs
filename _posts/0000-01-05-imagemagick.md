@@ -146,6 +146,17 @@ image = Dragonfly.app.generate(:plasma, 600, 400, 'format' => 'gif')
 
 The format is optional (defaults to png).
 
+### Convert
+Perform an arbitrary imagemagick generation command using convert.
+{% highlight ruby %}
+image = Dragonfly.app.generate(:convert, '-size 100x100 gradient:blue', 'jpg')
+{% endhighlight %}
+corresponds to the command-line
+
+    convert -size 100x100 gradient:blue <path>
+
+where path has extension 'jpg' (optional argument).
+
 ## Configuration
 On configure you can specify where to find the imagemagick commands
 {% highlight ruby %}
