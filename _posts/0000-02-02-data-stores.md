@@ -176,4 +176,4 @@ Dragonfly.app.configure do
 end
 {% endhighlight %}
 
-Any other args are passed straight to the data store's `initialize` method.
+Note that the data store _class_ is registered with the symbol, not the instance. Any other args are passed straight to the data store's `initialize` method.
