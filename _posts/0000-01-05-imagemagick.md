@@ -157,6 +157,19 @@ corresponds to the command-line
 
 where path has extension 'jpg' (optional argument).
 
+## Extra methods
+### Identify
+The plugin adds an `identify` method to `Job` objects and model attachments which
+simply proxies to the command line and returns the output.
+
+{% highlight ruby %}
+my_model.image.identify
+  # ===> "/var/tmp/dragonfly20131109-61051-de35zi.png PNG 1x1 1x1+0+0 8-bit sRGB 1c 266B 0.000u 0:00.000\n"
+
+my_model.image.identify("-verbose")
+  # ===> "Image: /var/tmp/dr..."
+{% endhighlight %}
+
 ## Configuration
 On configure you can specify where to find the imagemagick commands
 {% highlight ruby %}
