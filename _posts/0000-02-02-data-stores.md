@@ -25,7 +25,7 @@ Dragonfly.fetch(uid)
 {% endhighlight %}
 
 ### Models
-Models simply hold a reference to the uid and do the storing and fetching behind the scenes at the appropriate times - see [Models]({% post_url 0000-01-04-models %}) for more details.
+Models simply hold a reference to the uid and do the storing and fetching behind the scenes at the appropriate times - see [Models]({{ site.baseurl }}{% post_url 0000-01-04-models %}) for more details.
 
 ## File data store
 This is the default, but it can be manually configured using
@@ -50,7 +50,7 @@ You can specify the storage path per-content with
 uid = job.store(:path => 'my/custom/path')
 {% endhighlight %}
 
-To see how to do this with models, see [Models - Storage Options]({% post_url 0000-01-04-models %}#storage-options)
+To see how to do this with models, see [Models - Storage Options]({{ site.baseurl }}{% post_url 0000-01-04-models %}#storage-options)
 
 ## Memory data store
 The Memory data store keeps everything in memory and is useful for things like tests.

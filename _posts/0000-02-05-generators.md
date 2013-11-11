@@ -30,7 +30,7 @@ job = Dragonfly.app.generate(:sine_wave, 'c')
 {% endhighlight %}
 
 ## Implementing the generator
-Implementing is the same as for processors (including `update_url`) - see [Processors]({% post_url 0000-02-03-processors %})
+Implementing is the same as for processors (including `update_url`) - see [Processors]({{ site.baseurl }}{% post_url 0000-02-03-processors %})
 and <a href="http://rdoc.info/github/markevans/dragonfly/Dragonfly/Content" target="_blank">Dragonfly::Content</a>.
 
 ### Using shell commands
@@ -56,4 +56,4 @@ end
 {% endhighlight %}
 
 ## ImageMagick
-The ImageMagick plugin adds a few generators - see [the doc]({% post_url 0000-01-05-imagemagick %}) for more details.
+The ImageMagick plugin adds a few generators - see [the doc]({{ site.baseurl }}{% post_url 0000-01-05-imagemagick %}) for more details.
