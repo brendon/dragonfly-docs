@@ -207,8 +207,11 @@ footer {
 }
 
 /* Custom added by ME... */
-.sub-heading {
+.nav-category {
   font-weight: normal;
   margin: 0 0 3px;
   color: #777;
+}
+ul.subnav {
+  margin: 0 0 5px 15px;
 }
