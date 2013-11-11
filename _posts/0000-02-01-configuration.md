@@ -78,5 +78,9 @@ Dragonfly.app.configure do
 
   dragonfly_url "/here"               # defaults to /dragonfly - set to nil to turn off
 
+  define :first_bytes do |num_bytes|  # define an arbitrary method on Job objects and Attachment objects
+    data[0...num_bytes]               # e.g. my_model.attachment.first_bytes
+  end
+
 end
 {% endhighlight %}
