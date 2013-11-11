@@ -5,27 +5,7 @@ tag: customization
 ---
 
 # Configuration
-## Dragonfly apps
-Dragonfly has a default app
-{% highlight ruby %}
-app = Dragonfly.app
-{% endhighlight %}
-
-which is configured using
-{% highlight ruby %}
-app.configure do
-  # configuration goes here
-end
-{% endhighlight %}
-
-You can have multiple apps, each with its own configuration, by giving each a name, e.g.
-{% highlight ruby %}
-app1 = Dragonfly.app(:audio)
-app2 = Dragonfly.app(:images)
-{% endhighlight %}
-
-## Configuration options
-Defaults should be fairly sensible, but there are a number of things you can adjust to suit your needs. Below is an example with all configuration options used.
+Configuration defaults should be fairly sensible, but there are a number of things you can adjust to suit your needs. Below is an example with all configuration options used.
 
 {% highlight ruby %}
 Dragonfly.app.configure do
