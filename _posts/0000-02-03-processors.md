@@ -159,4 +159,4 @@ job.shrink.url # ===> "/hello-shrunk.txt?job=W1siZiIsInNvbWVfdWlkIl1d"
 If the processor accepts extra arguments then these are also passed to `update_url`.
 
 ## ImageMagick
-The ImageMagick plugin adds a few processors - see [the doc]({% post_url 0000-01-05-imagemagick %}) for more details.
+The ImageMagick plugin adds a few processors - see [the doc]({{ site.baseurl }}{% post_url 0000-01-05-imagemagick %}) for more details.

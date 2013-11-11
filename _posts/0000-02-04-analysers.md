@@ -76,7 +76,7 @@ end
 {% endhighlight %}
 
 ## ImageMagick
-The ImageMagick plugin adds a few analysers - see [the doc]({% post_url 0000-01-05-imagemagick %}) for more details.
+The ImageMagick plugin adds a few analysers - see [the doc]({{ site.baseurl }}{% post_url 0000-01-05-imagemagick %}) for more details.
 
 ## "Magic" Model Attributes
-To automatically store analysed properties in your model see [Models - Magic Attributes]({% post_url 0000-01-04-models %}#magic-attributes)
+To automatically store analysed properties in your model see [Models - Magic Attributes]({{ site.baseurl }}{% post_url 0000-01-04-models %}#magic-attributes)
