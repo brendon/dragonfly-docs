@@ -116,7 +116,7 @@ strong {
   font-weight:700;
 }
 
-section {
+.main {
   width:660px;
   float:right;
   padding-bottom:50px;
@@ -133,11 +133,16 @@ hr {
   margin:0 0 20px;
 }
 
-footer {
-  width:270px;
-  float:left;
-  position:fixed;
-  bottom:50px;
+.about {
+  border-top: 1px solid #ccc;
+  padding-top: 20px;
+}
+.about .left {
+  float: left;
+}
+.about .right {
+  float: right;
+  text-align: right;
 }
 
 @media print, screen and (max-width: 960px) {
@@ -147,7 +152,7 @@ footer {
     margin:0;
   }
 
-  header, section, footer {
+  header, .main {
     float:none;
     position:static;
     width:auto;
