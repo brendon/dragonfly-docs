@@ -25,10 +25,11 @@ end
 
 ... or just generally manage attachments in your web app ...
 {% highlight ruby %}
-wav = Dragonfly.app.fetch_url("http://free.music/lard.wav")
-uid = wav.to_mp3.store  # to_mp3 is a custom processor
+wav = Dragonfly.app.fetch_url("http://free.music/lard.wav")  # GET from t'interwebs
+mp3 = wav.to_mp3  # to_mp3 is a custom processor
+uid = mp3.store   # store in the configured datastore, e.g. S3
 
-Dragonfly.app.remote_url_for(uid)  # ===> http://s3.amazon.com/my-stuff/lard.mp3
+url = Dragonfly.app.remote_url_for(uid)  # ===> http://s3.amazon.com/my-stuff/lard.mp3
 {% endhighlight %}
 
 ... then Dragonfly is for you! Use the navigation links to browse the documentation.
