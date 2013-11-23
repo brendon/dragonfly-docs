@@ -4,7 +4,7 @@ title: Dragonfly
 ---
 
 # Dragonfly
-Welcome! Dragonfly is a highly customizable ruby gem which is already used on thousands of production websites.
+Welcome! Dragonfly is a highly customizable ruby gem which is already used on thousands of websites.
 
 If you want to generate image thumbnails in Rails ...
 {% highlight ruby %}
