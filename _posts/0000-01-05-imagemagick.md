@@ -51,9 +51,9 @@ Below are some examples of geometry strings for `thumb`:
 '400x300+50+100'  # crop from the point 50,100 with width, height 400,300
 {% endhighlight %}
 
-You can optionally pass the format as a second argument
+You can optionally specify the output format or specify a single frame/page (e.g. for gifs/pdfs) to work on
 {% highlight ruby %}
-image.thumb('40x30', 'jpg')
+image.thumb('40x30', 'format' => 'jpg', 'frame' => 0)
 {% endhighlight %}
 
 ### Encode
@@ -81,6 +81,11 @@ image.convert('-sigmoidal-contrast 4,0%')
 corresponds to the command-line
 
     convert <original_path> -sigmoidal-contrast 4,0% <new_path>
+
+As with `thumb`, you can specify the output format and frame
+{% highlight ruby %}
+image.convert('-sigmoidal-contrast 4,0%', 'format' => 'jpg', 'frame' => 12)
+{% endhighlight %}
 
 ## Analysers
 The following methods are provided
