@@ -154,12 +154,16 @@ hr {
 
   header, .main {
     float:none;
-    position:static;
     width:auto;
   }
 
   header {
-    padding-right:320px;
+    padding: 0;
+    position: relative;
+  }
+
+  .main {
+    position: static;
   }
 
   section {
@@ -173,10 +177,22 @@ hr {
     display:inline;
   }
 
-  header ul {
-    position:absolute;
-    right:50px;
-    top:52px;
+  header .title-section {
+    width: 33%;
+    float:left;
+  }
+
+  header .primary-nav {
+    width: 33%;
+    float:left;
+  }
+
+  header .secondary-nav {
+    width: 33%;
+    float:left;
+  }
+  header .secondary-nav h3 {
+    display: none;
   }
 }
 
@@ -224,4 +240,17 @@ hr {
 }
 ul.subnav {
   margin: 0 0 5px 15px;
+}
+
+/* from http://nicolasgallagher.com/micro-clearfix-hack */
+.clearfix:before,
+.clearfix:after {
+    content: " "; /* 1 */
+    display: table; /* 2 */
+}
+.clearfix:after {
+    clear: both;
+}
+.clearfix {
+  *zoom: 1;
 }
