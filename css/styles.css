@@ -212,6 +212,21 @@ hr {
   pre, code {
     word-wrap:normal;
   }
+
+  header .title-section {
+    float: none;
+    width: 100%;
+  }
+
+  header .primary-nav {
+    width: 50%;
+    float:left;
+  }
+
+  header .secondary-nav {
+    width: 50%;
+    float:left;
+  }
 }
 
 @media print, screen and (max-width: 480px) {
@@ -219,8 +234,10 @@ hr {
     padding:15px;
   }
 
-  header ul {
-    display:none;
+  header .primary-nav,
+  header .secondary-nav {
+    width: 100%;
+    float: none;
   }
 }
 
